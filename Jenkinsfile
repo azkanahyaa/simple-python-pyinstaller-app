@@ -17,8 +17,8 @@ node {
         stage('Deliver') {
             try {
                 sh 'pyinstaller --onefile sources/add2vals.py'
-            } finally {
                 archiveArtifacts 'dist/add2vals'
+            } finally {
             }
         }
     }
