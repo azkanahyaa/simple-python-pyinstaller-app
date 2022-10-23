@@ -1,11 +1,11 @@
 node {
-    stage('Build') {
-        withDockerContainer(image: 'python:2-alpine'){
+    withDockerContainer(image: 'python:2-alpine'){
+        stage('Build') {
             sh 'python -m py_compile sources/add2vals.py sources/calc.py'
         }
     }
-    stage('Test') {
-        withDockerContainer(image: 'qnib/pytest'){
+    withDockerContainer(image: 'qnib/pytest'){
+        stage('Test') {
             try {
                 sh 'py.test --verbose --junit-xml test-reports/results.xml sources/test_calc.py'
             } finally {
@@ -13,8 +13,8 @@ node {
             }
         } 
     }
-    stage('Deliver') {
-        withDockerContainer(image: 'cdrx/pyinstaller-linux:python2'){
+    withDockerContainer(image: 'cdrx/pyinstaller-linux:python2'){
+        stage('Deliver') {
             try {
                 sh 'pyinstaller --onefile sources/add2vals.py'
             } finally {
