@@ -9,7 +9,7 @@ node {
             withDockerContainer(image: 'qnib/pytest'){
                 sh 'py.test --verbose --junit-xml test-reports/results.xml sources/test_calc.py'
             }
-        } finaly {
+        } finally {
             junit 'test-reports/results.xml'
         }
     }
@@ -18,7 +18,7 @@ node {
             withDockerContainer(image: 'cdrx/pyinstaller-linux:python2'){
                 sh 'pyinstaller --onefile sources/add2vals.py'
             }
-        } finaly {
+        } finally {
             archiveArtifacts 'dist/add2vals'
         }
     }
