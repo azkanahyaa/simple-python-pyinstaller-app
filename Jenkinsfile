@@ -1,8 +1,7 @@
 node {
     stage('Build') {
         withDockerContainer(image: 'python:2-alpine'){
-            sh 'pwd'
-            sh 'python -m py_compile ./sources/add2vals.py /var/jenkins_home/workspace/submission-cicd-pipeline-azkanahyaa/sources/calc.py'
+            sh 'python -m py_compile /var/jenkins_home/workspace/submission-cicd-pipeline-azkanahyaa/sources/add2vals.py /var/jenkins_home/workspace/submission-cicd-pipeline-azkanahyaa/sources/calc.py'
         }
     }
     stage('Test') {
