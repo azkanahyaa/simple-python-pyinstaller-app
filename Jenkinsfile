@@ -15,11 +15,8 @@ node {
     }
     withDockerContainer(image: 'cdrx/pyinstaller-linux:python2'){
         stage('Deliver') {
-            try {
-                sh 'pyinstaller --onefile sources/add2vals.py'
-            } finally {
-                archiveArtifacts 'dist/add2vals'
-            }
+            sh 'pyinstaller --onefile sources/add2vals.py'
+            archiveArtifacts 'dist/add2vals'
         }
     }
 }
