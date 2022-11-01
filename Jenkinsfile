@@ -18,7 +18,7 @@ node {
     }
     stage('Deploy') {
         withDockerContainer(image: 'cdrx/pyinstaller-linux:python2'){
-            sleep 1
+            sh 'pyinstaller --onefile sources/add2vals.py'
         } 
     }
 }
