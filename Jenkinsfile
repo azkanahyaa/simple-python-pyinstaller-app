@@ -16,7 +16,7 @@ node {
     stage('Manual Approval') {
         input message: 'Lanjutkan ke tahap Deploy? (Klik "Proceed" untuk melanjutkan tahap Deploy)'
     }
-    withEnv(['VOLUME=$(pwd)/sources:/src)','IMAGE=cdrx/pyinstaller-linux:python2']){
+    withEnv(['VOLUME=$(pwd)/sources:/src','IMAGE=cdrx/pyinstaller-linux:python2']){
         stage('Deploy') {
             dir(path: env.BUILD_ID) { 
                 sh "echo ${VOLUME} ${IMAGE}"
