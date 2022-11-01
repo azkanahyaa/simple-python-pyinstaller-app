@@ -19,7 +19,6 @@ node {
     withEnv(['VOLUME=$(pwd)/sources:/src','IMAGE=cdrx/pyinstaller-linux:python2']){
         stage('Deploy') {
             sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'" 
-            sh "pip install heroku"
             sh "git push origin master"
             
             archiveArtifacts "sources/dist/add2vals" 
