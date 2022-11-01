@@ -20,8 +20,7 @@ node {
         stage('Deploy') {
             sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'" 
             
-            sh "git remote"
-            sh "git push"
+            sh "git push origin HEAD:master"
             
             archiveArtifacts "sources/dist/add2vals" 
             sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
