@@ -20,7 +20,7 @@ node {
         stage('Deploy') {
             sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'" 
             
-            archiveArtifacts "dist/add2vals" 
+            archiveArtifacts "sources/dist/add2vals" 
             sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
         } 
     }
