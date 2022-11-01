@@ -16,9 +16,9 @@ node {
     stage('Manual Approval') {
         input message: 'Lanjutkan ke tahap Deploy? (Klik "Proceed" untuk melanjutkan tahap Deploy)'
     }
-    withDockerContainer(image: 'cdrx/pyinstaller-linux:python2')
-    stage('Deploy') {
-        sh 'pyinstaller --onefile sources/add2vals.py'
-    } 
-    
+    withDockerContainer(image: 'qnib/pytest'){
+        stage('Deploy') {
+            sh 'pyinstaller --onefile sources/add2vals.py'
+        } 
+    }
 }
